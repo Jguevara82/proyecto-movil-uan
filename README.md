@@ -3,7 +3,7 @@ Repositorio para el proyecto de la asignatura Electiva I - Universidad Antonio N
 
 ## ***IDEAS INICIALES PARA LLEVAR A CABO EL PROYECTO:***
 
-- [ ] Aplicación para la gestión de la alimentación, peso y mortalidad de un galpón (Flutter, BD en Google Sheets)
+- [ ] Aplicación para la gestión de la alimentación, peso y mortalidad de un galpón.
 
 <div align="center">
 <table>
@@ -18,7 +18,7 @@ Repositorio para el proyecto de la asignatura Electiva I - Universidad Antonio N
 </table>
 </div>
 
-- [ ] Aplicación para manejo de finanzas personales simple, teniendo en cuenta ingresos y gastos (Tecnología sin definir)}
+- [ ] Aplicación para manejo de finanzas personales simple, teniendo en cuenta ingresos y gastos.
 
 <div align="center">
 <table>
