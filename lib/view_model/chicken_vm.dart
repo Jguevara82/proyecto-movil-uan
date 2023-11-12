@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'chicken.dart';
-import 'api_service.dart';
+import '../model/chicken.dart';
+import '../model/api_service.dart';
 
 class ChickenViewModel extends ChangeNotifier {
   ApiService apiService = ApiService();
@@ -12,7 +12,7 @@ class ChickenViewModel extends ChangeNotifier {
   }
 
   void fetchChickens() async {
-    chickens = await apiService.getChickens();
+    chickens = (await apiService.getChickens())!;
     notifyListeners();
   }
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'chicken_viewmodel.dart';
+import '../view_model/chicken_vm.dart';
 
 class ChickenPage extends StatelessWidget {
   @override
@@ -15,7 +15,7 @@ class ChickenPage extends StatelessWidget {
             itemBuilder: (context, index) {
               var chicken = model.chickens[index];
               return ListTile(
-                title: Text(chicken.nickname),
+                title: Text('${chicken.nickname}, Nacimiento: ${chicken.birthdate}'),
                 subtitle: Text('ID: ${chicken.id}, Weight: ${chicken.weight}g, Health Status: ${chicken.healthStatus}'),
                 onTap: () {
                   // Navega a una página de detalles o abre un diálogo para editar/eliminar

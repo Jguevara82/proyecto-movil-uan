@@ -27,8 +27,18 @@ class ApiService {
     }
   }
 
-  Future<List<Chicken>>? getChickens() {
-    return null;// Realiza una solicitud GET a tu API y convierte la respuesta en una lista de objetos Chicken
+  Future<List<Chicken>> getChickens() async {
+    List<Chicken> lista_aves = [];
+    var response = await http.get(Uri.parse('$apiUrl?acc=1&tbl=Aves'));
+    if (response.statusCode == 200) {
+      print(response.body);
+      List aves = JSON.jsonDecode(response.body)['data'];
+      for (var element in aves) {
+        lista_aves.add(Chicken.fromJson(element));
+      } //me duevelve un futuro string con  los datos del json
+    }
+    return lista_aves;
+    //return null;// Realiza una solicitud GET a tu API y convierte la respuesta en una lista de objetos Chicken
   }
 
   Future<http.Response>? createChicken(Chicken chicken) {

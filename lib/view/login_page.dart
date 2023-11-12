@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../view_model/login_vm.dart';
+import 'chicken_page.dart';
 import 'lista_aves_view.dart';
 
 class LoginPage extends StatelessWidget {
@@ -87,9 +88,8 @@ class MyCustomFormState extends State<MyCustomForm> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => ListaAvesView(
-                                items: List<String>.generate(200, (i) => 'Ave $i'),
-                              ),
+                              builder: (context) => ChickenPage(),
+                                  //ListaAvesView(items: List<String>.generate(200, (i) => 'Ave $i'),),
                             ),
                           );
                         } else {
