@@ -79,17 +79,41 @@ class MyCustomFormState extends State<MyCustomForm> {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-            child: TextFormField(
-              initialValue: '150$id_ave g',
-              readOnly: true,
-              validator: (value) {
-                return null;
-              },
-              decoration: const InputDecoration(
-                border: UnderlineInputBorder(),
-                labelText: 'Peso',
-              ),
-            ),
+            child: Row(
+              children: [
+                SizedBox(
+                  width: 90,
+                  child: TextFormField(
+                    initialValue: '150$id_ave g',
+                    readOnly: true,
+                    validator: (value) {
+                      return null;
+                    },
+                    decoration: const InputDecoration(
+                      border: UnderlineInputBorder(),
+                      labelText: 'Peso',
+                    ),
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    // Validate returns true if the form is valid, or false otherwise.
+                    if (_formKey.currentState!.validate()) {
+                      // If the form is valid, display a snackbar. In the real world,
+                      // you'd often call a server or save the information in a database.
+                      Navigator.pop(
+                          context
+                      );
+                    }
+                  },
+                  child: const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 12),
+                    child: Text('Historial'),
+                  ),
+                ),
+    ],
+    )
+
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),

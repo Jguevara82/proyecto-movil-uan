@@ -64,6 +64,7 @@ class MyCustomFormState extends State<MyCustomForm> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
             child: TextFormField(
+              obscureText: true,
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Ingresa una contraseña';

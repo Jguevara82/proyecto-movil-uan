@@ -24,6 +24,7 @@ class ListaAvesView extends StatelessWidget {
           ),
           itemBuilder: (context, index) {
             return ListTile(
+              leading: Image.network('https://cdn-icons-png.flaticon.com/512/7309/7309075.png'),
               title: Text(items[index]),
               subtitle: Text('apodo $index'),
               trailing: IconButton(onPressed: (){}, icon: const Icon(Icons.delete)),
