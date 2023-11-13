@@ -1,31 +1,32 @@
+import 'package:app_llanolargo/model/chicken.dart';
 import 'package:flutter/material.dart';
 
 class DetalleAveView extends StatelessWidget {
-  final int id_ave;
+  final Chicken ave;
 
-  const DetalleAveView({super.key, required this.id_ave});
+  const DetalleAveView({super.key, required this.ave});
 
   @override
   Widget build(BuildContext context) {
-    var appTitle = 'Ave # $id_ave - Llanolargo';
+    var appTitle = 'Ave # ${ave.id} - Llanolargo';
 
     return Scaffold(
         appBar: AppBar(
           title: Text(appTitle),
         ),
-        body: MyCustomForm(id_ave: id_ave,),
+        body: MyCustomForm(ave: ave,),
       );
   }
 }
 
 // Create a Form widget.
 class MyCustomForm extends StatefulWidget {
-  final int id_ave;
-  const MyCustomForm({super.key, required this.id_ave});
+  final Chicken ave;
+  const MyCustomForm({super.key, required this.ave});
 
   @override
   MyCustomFormState createState() {
-    return MyCustomFormState(id_ave);
+    return MyCustomFormState(ave);
   }
 }
 
@@ -38,8 +39,8 @@ class MyCustomFormState extends State<MyCustomForm> {
   // Note: This is a GlobalKey<FormState>,
   // not a GlobalKey<MyCustomFormState>.
   final _formKey = GlobalKey<FormState>();
-  final int id_ave;
-  MyCustomFormState(this.id_ave);
+  final Chicken ave;
+  MyCustomFormState(this.ave);
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +53,7 @@ class MyCustomFormState extends State<MyCustomForm> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
             child: TextFormField(
-              initialValue: 'apodo $id_ave',
+              initialValue: '${ave.nickname}',
               readOnly: true,
               validator: (value) {
                 return null;
@@ -66,7 +67,7 @@ class MyCustomFormState extends State<MyCustomForm> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
             child: TextFormField(
-              initialValue: '$id_ave/06/2023',
+              initialValue: '${ave.birthdate}',
               readOnly: true,
               validator: (value) {
                 return null;
@@ -84,7 +85,7 @@ class MyCustomFormState extends State<MyCustomForm> {
                 SizedBox(
                   width: 90,
                   child: TextFormField(
-                    initialValue: '150$id_ave g',
+                    initialValue: '${ave.weight}',
                     readOnly: true,
                     validator: (value) {
                       return null;

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:provider/provider.dart';
 import '../view_model/login_vm.dart';
 import 'chicken_page.dart';
+import 'jails_page.dart';
 import 'lista_aves_view.dart';
 
 class LoginPage extends StatelessWidget {
@@ -38,6 +40,13 @@ class MyCustomFormState extends State<MyCustomForm> {
   // Note: This is a GlobalKey<FormState>,
   // not a GlobalKey<MyCustomFormState>.
   final _formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    super.initState();
+    //EasyLoading.showSuccess('Use in initState');
+    // EasyLoading.removeCallbacks();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -80,28 +89,23 @@ class MyCustomFormState extends State<MyCustomForm> {
                     child: Text('Iniciar Sesión'),
                     onPressed: () async {
                       if(_formKey.currentState!.validate()){
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Validando campos...')),
-                        );
+                        EasyLoading.show(status: 'Validando...');
                         if (await model.login()) {
-                          // Navega a la siguiente pantalla
-                          Navigator.push(
+                          EasyLoading.showSuccess('Bienvenido').then((value) => Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => ChickenPage(),
-                                  //ListaAvesView(items: List<String>.generate(200, (i) => 'Ave $i'),),
+                              builder: (context) => JailsPage(),
+                              //ListaAvesView(items: List<String>.generate(200, (i) => 'Ave $i'),),
                             ),
-                          );
+                          ));
+                          // Navega a la siguiente pantalla
+
                         } else {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('Usuario o contraseña incorrectos')),
-                          );
+                          EasyLoading.showError('Usuario o contraseña incorrectos');
                           // Muestra un mensaje de error
                         }
                       }else{
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Error de validación de campos')),
-                        );
+                        EasyLoading.showError('Error de validación de campos');
                       }
 
                     },

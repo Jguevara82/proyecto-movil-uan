@@ -2,26 +2,22 @@ import 'package:flutter/material.dart';
 import '../model/chicken.dart';
 import '../model/api_service.dart';
 
-class ChickenViewModel extends ChangeNotifier {
+class JailsViewModel extends ChangeNotifier {
   ApiService apiService = ApiService();
 
-  List<Chicken> chickens = [];
+  List<int> jails = [];
 
-  ChickenViewModel({id=0}) {
-    if(id != 0){
-      fetchChickensByJail(id);
-    }else{
-      fetchChickens();
-    }
+  JailsViewModel() {
+    fetchJails();
   }
 
-  void fetchChickensByJail(id) async {
-    chickens = (await apiService.getChickens(where: 'id_jaula', value: id))!;
+  void fetchJails() async {
+    jails = (await apiService.getJails())!;
     notifyListeners();
   }
 
   void fetchChickens() async {
-    chickens = (await apiService.getChickens())!;
+    (await apiService.getChickens())!;
     notifyListeners();
   }
 

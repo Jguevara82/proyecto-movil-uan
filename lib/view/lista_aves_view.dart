@@ -29,10 +29,10 @@ class ListaAvesView extends StatelessWidget {
               subtitle: Text('apodo $index'),
               trailing: IconButton(onPressed: (){}, icon: const Icon(Icons.delete)),
               onTap: (){
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => DetalleAveView(id_ave: index)),
-                );
+                //Navigator.push(
+                //  context,
+                //  MaterialPageRoute(builder: (context) => DetalleAveView(ave: index)),
+                //);
               },
             );
           },

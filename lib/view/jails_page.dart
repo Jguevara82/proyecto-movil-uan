@@ -2,34 +2,32 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:provider/provider.dart';
 import '../view_model/chicken_vm.dart';
+import '../view_model/jails_vm.dart';
+import 'chicken_page.dart';
 import 'detalle_ave_view.dart';
 
-class ChickenPage extends StatelessWidget {
-  final int id_jaula;
-  const ChickenPage({this.id_jaula=0});
-  
+class JailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     EasyLoading.show(status: 'Cargando...');
     return ChangeNotifierProvider(
-      create: (context) => ChickenViewModel(id: id_jaula),
+      create: (context) => JailsViewModel(),
       child: Scaffold(
-        appBar: AppBar(title: Text('Aves')),
-        body: Consumer<ChickenViewModel>(
+        appBar: AppBar(title: Text('Jaulas')),
+        body: Consumer<JailsViewModel>(
           builder: (context, model, child) { EasyLoading.dismiss(); return ListView.builder(
-            itemCount: model.chickens.length,
+            itemCount: model.jails.length,
             itemBuilder: (context, index) {
-              var chicken = model.chickens[index];
+              var jail = model.jails[index];
               return ListTile(
-                leading: Image.network('https://cdn-icons-png.flaticon.com/512/7309/7309075.png'),
-                title: Text('Ave # ${chicken.id}'),
-                subtitle: Text('Apodo: ${chicken.nickname},\nEstado: ${chicken.healthStatus}'),
+                leading: Image.network('https://cdn-icons-png.flaticon.com/512/869/869027.png'),
+                title: Text('Jaula # $jail'),
                 trailing: IconButton(onPressed: (){}, icon: const Icon(Icons.delete)),
                 onTap: () {
                   // Navega a una página de detalles o abre un diálogo para editar/eliminar
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => DetalleAveView(ave: chicken)),
+                    MaterialPageRoute(builder: (context) => ChickenPage(id_jaula: jail,)),
                   );
                 },
               );

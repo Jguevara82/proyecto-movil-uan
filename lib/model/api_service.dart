@@ -4,7 +4,7 @@ import 'user.dart';
 import 'chicken.dart';
 
 class ApiService {
-  String apiUrl = 'https://script.google.com/macros/s/AKfycby2gO0HD2uddgcGqcw7-J5geFVqgOZN0St4mknwimbpg_Vc9HwVY70PUaRdPB67itPzCg/exec'; // Tu URL de la API
+  String apiUrl = 'https://script.google.com/macros/s/AKfycbzY8KOWiwfFGbIQBKae7vpbgTP0um_RG5d8LSDo_wvmog0qAumv8iQQsxgier20e-TrEQ/exec'; // Tu URL de la API
 
   Future<String> select(String table) async {
     //final url = Uri.parse('$apiUrl?acc=1&tbl=$table');
@@ -27,11 +27,23 @@ class ApiService {
     }
   }
 
-  Future<List<Chicken>> getChickens() async {
-    List<Chicken> lista_aves = [];
-    var response = await http.get(Uri.parse('$apiUrl?acc=1&tbl=Aves'));
+  Future<List<int>> getJails() async {
+    List<int> lista_jaulas = [];
+    var response = await http.get(Uri.parse('$apiUrl?acc=1&tbl=Jaulas'));
     if (response.statusCode == 200) {
-      print(response.body);
+      List aves = JSON.jsonDecode(response.body)['data'];
+      for (var element in aves) {
+        lista_jaulas.add(int.parse(element['id'].toString()));
+      } //me duevelve un futuro string con  los datos del json
+    }
+    return lista_jaulas;
+    //return null;// Realiza una solicitud GET a tu API y convierte la respuesta en una lista de objetos Chicken
+  }
+
+  Future<List<Chicken>> getChickens({where = '', value = ''}) async {
+    List<Chicken> lista_aves = [];
+    var response = await http.get(Uri.parse('$apiUrl?acc=1&tbl=Aves&where=$where&value=$value'));
+    if (response.statusCode == 200) {
       List aves = JSON.jsonDecode(response.body)['data'];
       for (var element in aves) {
         lista_aves.add(Chicken.fromJson(element));
